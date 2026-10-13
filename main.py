@@ -5,13 +5,8 @@ def main():
     Main application function
     """
 
+    show_random_games(7, utils.get_recent_games(11))
 
-    show_random_games(4, utils.get_recent_games(11))
-
-    try:
-        utils.check_input(10, 0, 5)
-    except Exception as e:
-        print(f"Error: {e}")
 
 
 
@@ -54,7 +49,8 @@ def show_random_games(amount, game_list):
 
             while len(game_dict) < amount:
                 game = utils.get_random_game(game_list)
-                game_dict.update({game["appid"]: game})
+                game_dict.update({len(game_dict): game})
+                # game_list.append({game["appid"]: game})
                 print("added game to list")
 
             # random_games = list(game_dict)
@@ -64,10 +60,17 @@ def show_random_games(amount, game_list):
 
 
 def print_game_list(game_list, count):
+    """
+    prints name and playtime in last 2 weeks of a given amount of games from a given list
+
+    :param game_list:
+    :param count:
+    :return:
+    """
     i = 0
 
     while i < count:
-        game_string = f"{i}. {game_list[i]["name"]}      playtime last 2 weeks: {game_list[i]["playtime_2weeks"]} minutes"
+        game_string = f"{i + 1}. {game_list[i]["name"]}      playtime last 2 weeks: {game_list[i]["playtime_2weeks"]} minutes"
         print(game_string)
         i += 1
 
