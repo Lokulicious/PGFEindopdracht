@@ -5,7 +5,7 @@ def main():
     Main application function
     """
 
-    show_random_games(7, utils.get_recent_games(11))
+    show_random_games(13, utils.get_recent_games(11))
 
 
 
@@ -42,20 +42,20 @@ def show_random_games(amount, game_list):
     except Exception as e:
         print(f"Error: {e}")
     else:
-        if amount == 1:
-            utils.get_random_game(game_list)
-        else:
-            game_dict = {}
+        # if amount == 1:
+        #     utils.get_random_game(game_list)
+        # else:
+            # game_dict = {}
+            # #     TODO: change amount of games to get system at request, not after
+            # while len(game_dict) < amount:
+            #     game = utils.get_random_game(game_list)
+            #     game_dict.update({len(game_dict): game})
+            #     # game_list.append({game["appid"]: game})
+            #     print("added game to list")
 
-            while len(game_dict) < amount:
-                game = utils.get_random_game(game_list)
-                game_dict.update({len(game_dict): game})
-                # game_list.append({game["appid"]: game})
-                print("added game to list")
+        random_games = utils.get_random_games(game_list, amount)
 
-            # random_games = list(game_dict)
-
-            print_game_list(game_dict, len(game_dict))
+        print_game_list(random_games, amount)
 
 
 
