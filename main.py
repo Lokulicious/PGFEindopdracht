@@ -1,77 +1,114 @@
 from tools import utils
+import games
+import favourites
 
 def main():
     """
     Main application function
     """
+    show_main_menu()
 
-    show_random_games(13, utils.get_recent_games(11))
-
-
-
-
-
-def show_recent_games(count):
+def show_main_menu():
     """
-    Shows a list of given amount of games played in the last 2 weeks by owner of userid provided in .env
-
-    :param count: amount of games to show
-    """
-    recent_games = utils.get_recent_games(count)
-
-    if len(recent_games) < count:
-        count = len(recent_games)
-        print(f"Only {count} games played in last 2 weeks found. \n")
-
-    print_game_list(recent_games, count)
-
-    print(f"These are the top {count} games you played in the last 2 weeks by playtime \n")
-
-
-
-
-def show_random_games(amount, game_list):
-    """
-    This function gets 1 or more random games from a given list of games
-
-    :param amount: the amount of games to show
-    :param game_list: the list which the games are selected from
-    """
-    try:
-        utils.check_input(amount, 1, len(game_list))
-    except Exception as e:
-        print(f"Error: {e}")
-    else:
-        # if amount == 1:
-        #     utils.get_random_game(game_list)
-        # else:
-            # game_dict = {}
-            # #     TODO: change amount of games to get system at request, not after
-            # while len(game_dict) < amount:
-            #     game = utils.get_random_game(game_list)
-            #     game_dict.update({len(game_dict): game})
-            #     # game_list.append({game["appid"]: game})
-            #     print("added game to list")
-
-        random_games = utils.get_random_games(game_list, amount)
-
-        print_game_list(random_games, amount)
-
-
-
-def print_game_list(game_list, count):
-    """
-    prints name and playtime in last 2 weeks of a given amount of games from a given list
-
-    :param game_list:
-    :param count:
+    prints main menu and listens for user input
     :return:
     """
-    i = 0
 
-    while i < count:
-        game_string = f"{i + 1}. {game_list[i]["name"]}      playtime last 2 weeks: {game_list[i]["playtime_2weeks"]} minutes"
-        print(game_string)
-        i += 1
+
+
+    while True:
+        print("Main menu \n"
+              "1. Search game(s) \n"
+              "2. Favourite games \n"
+              "0. Quit \n")
+
+        try:
+            choice = int(input("Choose an option: "))
+            utils.check_input(choice, 0, 2)
+        except Exception as e:
+            print(f"Invalid input: {e}")
+            continue
+        else:
+            if choice == 1:
+                show_games_menu()
+            elif choice == 2:
+                show_favourites_menu()
+            elif choice == 0:
+                break
+
+def show_games_menu():
+    """
+    prints submenu with random game choices or recent games
+    :return:
+    """
+
+    while True:
+        print("Games menu: \n"
+              "1. Random game(s) from library \n"
+              "2. Random game(s) from favourite games \n"
+              "3. Show most played games in the last 2 weeks \n"
+              "0. Back to main menu \n")
+
+        try:
+            choice = int(input("Choose an option: "))
+            utils.check_input(choice, 0, 3)
+        except Exception as e:
+            print(f"Invalid input: {e}")
+            continue
+        else:
+            if choice == 1:
+                amount_of_games = int(input("How many games do you want to print?: "))
+                random_games = games.show_random_games(amount_of_games, games.get_owned_games())
+                add_game = input("Press enter to continue or enter the index of a game to add it to favourite games: ")
+                if add_game == "":
+                    continue
+                else:
+                    favourites.add_game_from_list(random_games, int(add_game) - 1)
+
+            elif choice == 2:
+                amount_of_games = int(input("How many games do you want to print?: "))
+                favourite_games = favourites.load_favourite_games()
+                if favourite_games:
+                    games.show_random_games(amount_of_games, favourite_games)
+                else:
+                    print("You currently do not have any favourite games")
+            elif choice == 3:
+                amount_of_games = int(input("How many games do you want to print?: "))
+                recent_games = games.show_recent_games(amount_of_games)
+                add_game = input("Press enter to continue or enter the index of a game to add it to favourite games: ")
+                if add_game == "":
+                    continue
+                else:
+                    favourites.add_game_from_list(recent_games, int(add_game) - 1)
+            elif choice == 0:
+                break
+
+
+def show_favourites_menu():
+
+    while True:
+        print("Favourites menu: \n"
+              "1. Show favourite games \n"
+              "2. Add favourite game \n"
+              "0. Return to main menu \n")
+        try:
+            choice = int(input("Choose an option: "))
+            utils.check_input(choice, 0, 2)
+        except Exception as e:
+            print(f"Invalid input: {e}")
+            continue
+        else:
+            if choice == 1:
+                favourites.show_favourite_games()
+            elif choice == 2:
+                pass
+                # TODO: Add favourite games functionality
+            elif choice == 0:
+                break
+
+
+
+
+
 
 main()

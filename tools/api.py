@@ -1,4 +1,4 @@
-import json
+from tools.utils import load_json_data
 import os
 from pathlib import Path
 
@@ -10,6 +10,8 @@ load_dotenv()
 api_key = os.getenv("API_KEY")
 steamid = os.getenv("steamid")
 
+
+# TODO: Set fallback steam account id so api calls work without needing steam account. also add messaging for missing api key and steamid in .env file
 
 def get_owned_games():
     """
@@ -29,11 +31,11 @@ def get_owned_games():
     except Exception as e:
         print(f"Exception encountered getting owned games: {e}")
         print("Loading mock data from JSON file as fallback.")
-        return load_mock_json_data(Path(__file__).parent.parent / "data" / "getownedgames.json")
+        return load_json_data(Path(__file__).parent.parent / "data" / "getownedgames.json")
 
 
 
-def get_recent_games(count = 10):
+def get_recent_games():
     """
     This function gets a list of games played in the last 2 weeks using the api key and steamid provided in the .env file
 
@@ -43,7 +45,7 @@ def get_recent_games(count = 10):
 
     try:
         url = "https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/"
-        params = {"key": api_key, "steamid": steamid, "count": count, "format": "json"}
+        params = {"key": api_key, "steamid": steamid, "format": "json"}
 
         response = requests.get(url, params=params)
         data = response.json()
@@ -51,20 +53,6 @@ def get_recent_games(count = 10):
     except Exception as e:
         print(f"Exception encountered getting recent games: {e}")
         print("Loading mock data from JSON file as fallback.")
-        return load_mock_json_data(Path(__file__).parent.parent / "data" / "getrecentlyplayed.json")
+        return load_json_data(Path(__file__).parent.parent / "data" / "getrecentlyplayed.json")
 
 
-def load_mock_json_data(path):
-    """
-    returns mock JSON data from file in case api is not reachable
-
-    :param path:
-    :return: JSON Data from file
-    """
-
-    try:
-        with open(path) as p:
-            data = json.load(p)
-        return data
-    except Exception as e:
-        print(f"Ran into problem fetching data from file: {e}")
