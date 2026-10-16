@@ -14,8 +14,6 @@ def show_main_menu():
     :return:
     """
 
-
-
     while True:
         print("Main menu \n"
               "1. Search game(s) \n"
@@ -64,7 +62,6 @@ def show_games_menu():
                     continue
                 else:
                     favourites.add_game_from_list(random_games, int(add_game) - 1)
-
             elif choice == 2:
                 amount_of_games = int(input("How many games do you want to print?: "))
                 favourite_games = favourites.load_favourite_games()
@@ -89,7 +86,7 @@ def show_favourites_menu():
     while True:
         print("Favourites menu: \n"
               "1. Show favourite games \n"
-              "2. Add favourite game \n"
+              "2. Remove favourite game \n"
               "0. Return to main menu \n")
         try:
             choice = int(input("Choose an option: "))
@@ -101,8 +98,9 @@ def show_favourites_menu():
             if choice == 1:
                 favourites.show_favourite_games()
             elif choice == 2:
-                pass
-                # TODO: Add favourite games functionality
+                favourites.show_favourite_games()
+                remove_game = int(input("Enter the index of a game to remove it from favourite games or press enter to cancel: "))
+                favourites.remove_favourite_game(remove_game)
             elif choice == 0:
                 break
 

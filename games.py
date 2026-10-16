@@ -70,6 +70,7 @@ def get_recent_games():
     recent_games_json = api.get_recent_games()
     return recent_games_json["response"]["games"]
 
+
 def get_random_games(game_list, amount):
     """
     Returns random game from given list of games
@@ -84,7 +85,7 @@ def get_random_games(game_list, amount):
     if amount == len(game_list):
         return game_list
     elif amount == 1:
-        return_list.append(game_list[random.randint(0, len(game_list - 1))])
+        return_list.append(game_list[random.randint(0, len(game_list) - 1)])
         return return_list
     else:
         return_list = game_list

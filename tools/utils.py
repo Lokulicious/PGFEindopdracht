@@ -54,3 +54,4 @@ def print_game_list(game_list, count):
         game_string = f"{i + 1}. {game_list[i]["name"]}      Time played: {game_list[i]["playtime_forever"]} minutes"
         print(game_string)
         i += 1
+    print()
