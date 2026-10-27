@@ -1,6 +1,9 @@
+import logging
 import random
 from tools import utils
 from tools import api
+
+LOGGER = logging.getLogger(__name__)
 
 def show_recent_games(count):
     """
@@ -14,13 +17,15 @@ def show_recent_games(count):
         utils.check_input(count, 1, len(recent_games))
     except Exception as e:
         print(f"Invalid input: {e}")
-
+        LOGGER.error(f"Invalid input: {e}")
     if len(recent_games) < count:
+        LOGGER.warning(f"Only {count} games played in last 2 weeks found. given: {count}")
         count = len(recent_games)
         print(f"Only {count} games played in last 2 weeks found. \n")
     elif count <= 0:
-        print("number of games has to be higher than 0")
-        return
+        print(f"number of games has to be higher than 0, given: {count}")
+        LOGGER.warning("number of games has to be higher than 0")
+        return False
 
     utils.print_game_list(recent_games, count)
     print(f"These are the top {count} games you played in the last 2 weeks by playtime \n")
@@ -41,6 +46,7 @@ def show_random_games(amount, game_list):
         utils.check_input(amount, 1, len(game_list))
     except Exception as e:
         print(f"Error: {e}")
+        LOGGER.error(f"Error: {e}")
     else:
         random_games = get_random_games(game_list, amount)
         utils.print_game_list(random_games, amount)
@@ -56,8 +62,7 @@ def get_owned_games():
     Returns a usable list of owned games using the JSON api response
     :return:
     """
-    # TODO: RENAME API METHODS TO NOT CONFLICT WITH THESE
-    owned_games_json = api.get_owned_games()
+    owned_games_json = api.get_owned_games_api()
     return owned_games_json["response"]["games"]
 
 def get_recent_games():
@@ -66,8 +71,7 @@ def get_recent_games():
 
     :return:
     """
-    # TODO: RENAME API METHODS TO NOT CONFLICT WITH THESE
-    recent_games_json = api.get_recent_games()
+    recent_games_json = api.get_recent_games_api()
     return recent_games_json["response"]["games"]
 
 

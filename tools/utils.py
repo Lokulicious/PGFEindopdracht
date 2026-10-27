@@ -1,9 +1,21 @@
 import json
+import logging
+from encodings import utf_8
+
+LOGGER = logging.getLogger(__name__)
 
 
 def check_input(user_input, min_input, max_input):
+    '''
+    checks if user_input falls within allowed range, if not it raises an exception
+
+    :param user_input:
+    :param min_input:
+    :param max_input:
+    :return:
+    '''
     if not min_input <= user_input <= max_input:
-        raise Exception(f"Input outside of allowed range (min: {min_input}, max: {max_input}")
+        raise Exception(f"Input outside of allowed range (min: {min_input}, max: {max_input}, given: {user_input}) \n")
 
 
 def load_json_data(path):
@@ -20,8 +32,12 @@ def load_json_data(path):
         return data
     except FileNotFoundError:
         print("File does not exist yet, no data to load")
+        LOGGER.warning("File does not exist yet, no data to load")
+
     except Exception as e:
         print(f"Ran into problem fetching data from file: {e}")
+        LOGGER.error(f"Ran into problem fetching data from file: {e}")
+
 
 def save_json_data(path, data):
     """
@@ -36,6 +52,7 @@ def save_json_data(path, data):
             json.dump(data, file)
     except Exception as e:
         print(f"Ran into problem saving JSON data to file: {e}")
+        LOGGER.error(f"Ran into problem saving JSON data to file: {e}")
 
 def does_file_exist(path):
     return path.exists()
@@ -55,3 +72,16 @@ def print_game_list(game_list, count):
         print(game_string)
         i += 1
     print()
+
+
+def get_user_input(min_input, max_input, prompt_string= "Choose an option: "):
+    try:
+        choice = int(input(prompt_string))
+        check_input(choice, min_input, max_input)
+        return choice
+    except Exception as e:
+        print(f"Invalid input: {e}")
+        LOGGER.warning(f"Invalid input: {e}")
+        return "" #return empty string for handling of there being no correct input
+
+

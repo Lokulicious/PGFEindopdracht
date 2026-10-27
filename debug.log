@@ -1,0 +1,37 @@
+ERROR:tools.utils:Invalid input: Input outside of allowed range (min: 1, max: 15) 
+
+WARNING:tools.utils:Only 15 games played in last 2 weeks found. 
+
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
+ERROR:games:Invalid input: Input outside of allowed range (min: 1, max: 15) 
+
+WARNING:games:Only 15 games played in last 2 weeks found. 
+
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
+WARNING:favourites:adding game to favourites failed, Rocket League was already in favourites
+ERROR:games:Error: Input outside of allowed range (min: 1, max: 4, given: 5) 
+
+ERROR:games:Error: Input outside of allowed range (min: 1, max: 4, given: 5) 
+
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
+WARNING:tools.utils:Invalid input: Input outside of allowed range (min: 0, max: 2, given: 8) 
+
+WARNING:tools.utils:Invalid input: Input outside of allowed range (min: 1, max: 5, given: 7) 
+
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
+ERROR:games:Invalid input: Input outside of allowed range (min: 1, max: 15, given: -2) 
+
+WARNING:games:number of games has to be higher than 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
+ERROR:games:Invalid input: Input outside of allowed range (min: 1, max: 15, given: -2) 
+
+WARNING:games:number of games has to be higher than 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
