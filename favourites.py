@@ -11,9 +11,14 @@ def load_favourite_games():
 
 def save_favourite_game(game):
     favourite_games = load_favourite_games()
+    favourite_game_names = []
+
+    for favourite in favourite_games:
+        favourite_game_names.append(favourite["name"])
+
     if not favourite_games:
         utils.save_json_data(JSON_PATH, [game])
-    elif game in favourite_games:
+    elif game["name"] in favourite_game_names:
         print(f"{game["name"]} was already in favourites")
         LOGGER.warning(f"adding game to favourites failed, {game["name"]} was already in favourites")
     else:

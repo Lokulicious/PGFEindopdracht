@@ -35,3 +35,24 @@ ERROR:games:Invalid input: Input outside of allowed range (min: 1, max: 15, give
 WARNING:games:number of games has to be higher than 0
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
 DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetOwnedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&include_appinfo=true&format=json HTTP/1.1" 200 27163
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1068
+ERROR:games:Invalid input: Input outside of allowed range (min: 1, max: 15, given: 30) 
+
+WARNING:games:Only 30 games played in last 2 weeks found. given: 30
+WARNING:tools.utils:Invalid input: invalid literal for int() with base 10: ''
+ERROR:games:Error: Input outside of allowed range (min: 1, max: 7, given: -2) 
+
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetOwnedGames/v0001/?key=74E71E66B9220B3248CA91DE94&steamid=76561198181158962&include_appinfo=true&format=json HTTP/1.1" 401 174
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetOwnedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&include_appinfo=true&format=json HTTP/1.1" 200 27417
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1137
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.steampowered.com:443
+DEBUG:urllib3.connectionpool:https://api.steampowered.com:443 "GET /IPlayerService/GetRecentlyPlayedGames/v0001/?key=74E71E66B9220B3248CA91DE9471C5DC&steamid=76561198181158962&format=json HTTP/1.1" 200 1137
+WARNING:favourites:adding game to favourites failed, Chained Beasts was already in favourites
